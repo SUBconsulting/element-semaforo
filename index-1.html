@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="oem" data-oem="viewport" content="width=device-width, initial-scale=1">
+	<title>Prueba de concepto 1</title>
+	<style>
+		body{font-family: Helvetica,sans-serif;}
+
+		.title{display: grid;grid-template-columns: 1fr 2fr;width:150px;margin:50px auto;text-align: center;}
+		.title input{width: 50px;border:0;background: transparent;text-align: center;font-weight: 800;}
+		ul{list-style: none;display: grid;grid-template-columns: repeat(3,1fr);}
+		ul li{}
+		ul li .circle{width:10px;height:10px;border-radius: 10px;}
+		ul li .circle.RED{background:red;}
+		ul li .circle.ORANGE{background:orange;}
+		ul li .circle.YELLOW{background:yellow;}
+		ul li .circle.GREEN{background:green;}
+
+	.OEM{    display: flex;  grid-gap: 10px;  flex-direction: row;  width: 100%;  justify-content: center; flex-wrap: wrap;}
+    .OEM input[type="radio"]{display: none;}
+    .OEM input[type="radio"]:checked + label{opacity: 1;}
+    .OEM input[type="radio"] + label{opacity: .5;text-align: center;font-size: .7em;}
+
+
+
+	</style>
+</head>
+<body>
+	<main>
+		<div class="title">
+			<input type="text" id="numero" disabled />
+			<p>Total</p>
+		</div>
+		<div id="users">
+			<div class="OEM">
+				<div>
+					<input type="radio" name="oem" data-oem="BMW" id="BMW" >
+					<label for="BMW">
+						<p>BMW</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="Daimler AG" id="Daimler" >
+					<label for="Daimler">
+						<p>Daimler AG</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="FCA" id="FCA" >
+					<label for="FCA">
+						<p>FCA</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="Geely" id="Geely" >
+					<label for="Geely">
+						<p>Geely</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="FORD" id="FORD" >
+					<label for="FORD">
+						<p>FORD</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="GM" id="GM" >
+					<label for="GM">
+						<p>GM</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="Honda" id="Honda">
+					<label for="Honda">
+						<p>Honda</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="Hyundai" id="Hyundai" >
+					<label for="Hyundai">
+						<p>Hyundai</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="Mazda" id="Mazda" >
+					<label for="Mazda">
+						<p>Mazda</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="Mitsubishi" id="Mitsubishi" >
+					<label for="Mitsubishi">
+						<p>Mitsubishi</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="Nissan" id="Nissan" >
+					<label for="Nissan">
+						<p>Nissan</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="Subaru" id="Subaru" >
+					<label for="Subaru">
+						<p>Subaru</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="Tata" id="Tata" >
+					<label for="Tata">
+						<p>Tata</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="Tesla" id="Tesla" >
+					<label for="Tesla">
+						<p>Tesla</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="Toyota" id="Toyota" >
+					<label for="Toyota">
+						<p>Toyota</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="VW" id="VW" >
+					<label for="VW">
+						<p>VW</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="bmw" id="chirey" >
+					<label for="chirey">
+						<p>chirey</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+
+				<div>
+					<input type="radio" name="oem" data-oem="JAC" id="JAC" >
+					<label for="JAC">
+						<p>JAC</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="KIA" id="KIA" >
+					<label for="KIA">
+						<p>KIA</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="MG" id="MG" >
+					<label for="MG">
+						<p>MG</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="Renault" id="Renault" >
+					<label for="Renault">
+						<p>Renault</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+				<div>
+					<input type="radio" name="oem" data-oem="Volvo" id="Volvo" >
+					<label for="Volvo">
+						<p>Volvo</p>
+						<img src="https://placehold.co/50x50"/>
+					</label>
+				</div>
+			</div>
+
+			<div class="">
+				<button class="sort" id="sort" data-sort="Model">Ordenar por Modelo</button>
+				<input class="search" id="search" placeholder="Buscar" />
+			</div>
+		   	
+		   	<button class="reset" id="reset">Reestablecer</button>
+		  <ul class="list"></ul>
+
+
+
+		</div>
+	</main>
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
+	<script>
+
+		//opciones
+		const options = {
+		  valueNames: [ 'OEM', 'Make',"Model","Year","Comentarios","Semaforo","Qty","Lujo" ],
+		  item: `<li>
+		  			<h3 class="OEM"></h3>
+		  			<p class="Make"></p>
+		  			<p class="Model"></p>
+		  			<p class="Year"></p>
+		  			<p class="Comentarios"></p>
+		  			<div class="Semaforo"></div>
+		  			<p>
+		  		</li>`
+		};
+
+		//crear la lista
+		const userList = new List('users', options);
+
+		async function init(){
+			
+
+			fetch('./data/csvjson.json').then(response => {
+			  return response.json();
+			}).then(data => {
+			  	// Work with JSON data here
+			  	// console.log(typeof data);
+			  	let cars = data.values();
+			  	// console.log(typeof cars);
+			  	for (let car of cars) {
+			  		// console.log(car);
+			  		let semaforoDiv = `<div class="circle ${car.Semaforo}"></div>`;
+			  		switch(car.Semaforo){
+			  			case "RED":   		break;
+			  			case "ORANGE": 	semaforoDiv += (car.Lujo) ? `<p><3</p>` : `<p><15</p>`;	break;
+			  			case "YELLOW": 	semaforoDiv += (car.Lujo) ? `<p><6</p>` : `<p><30</p>`;  break;
+			  			case "GREEN": 		semaforoDiv += (car.Lujo) ? `<p>≥6</p>` : `<p>≥30</p>`;	break;
+			  		}
+
+					userList.add({
+					  OEM: car.OEM,
+					  Make: car.Make,
+					  Model: car.Make,
+					  Year: car.Year,
+					  Comentarios: car.Comentarios,
+					  Semaforo: semaforoDiv,
+					});
+			  	}
+			  	
+
+			}).catch(err => {
+			  // Do something for an error here
+				console.error('Hubo un problema con la petición Fetch:' + err.message);
+			});
+			
+		}
+		const numero = document.getElementById("numero");
+		userList.on("updated",function(event){
+			numero.value=event.matchingItems.length;
+			// console.log(event.matchingItems.length);
+		});
+
+		const oemButtons  = document.querySelectorAll("input[type='radio'][name='oem']");
+		console.log(oemButtons);
+		for(button of oemButtons){
+			button.addEventListener("click",function(event){
+				console.log(event.target);
+				console.log(event.target.id);
+				console.log(event.target.checked);
+				if(event.target.checked){
+					userList.filter(function(item){
+						console.log(item);
+						return (item._values.OEM == event.target.id) ? true : false;
+					});
+				}else{
+					userList.filter();
+				}
+			});
+		}
+
+		const reset = document.getElementById("reset");
+		reset.addEventListener("click",function(){
+			document.getElementById("search").value="";
+			for(button of oemButtons){button.checked=false;}
+			userList.filter();
+		});
+		init();
+	</script>
+
+</body>
+</html>
