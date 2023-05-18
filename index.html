@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="oem" data-oem="viewport" content="width=device-width, initial-scale=1">
+	<title>ELEMENT - Semáforo Abril 2023</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap');
+		:root{
+			--maxSize:1920px;
+			--green:#80B944;
+			--orange:#F7941D;
+			--yellow:#FFDE17;
+			--red:#ED1C24;
+			--blue:#192F44;
+
+			--gray:#E3E4E5;
+		}
+
+		body{font-family: 'Poppins', sans-serif;padding: 0;margin: 0;}
+		header{width: 100%;}
+		header img{width: 100%;s}
+		main{max-width: var(--maxSize);width:80%;margin: 50px auto;}
+		footer{padding:25px 0;background: #192F44;}
+		
+		/*logotipos*/
+		.OEMcontainer{display: flex;grid-gap:10px;margin:0 0 50px 0;flex-direction: row; width: 100%; justify-content:center; flex-wrap: wrap; align-items:center;justify-content: space-between;}
+		.OEMcontainer button{background: var(--green);border-radius: 50px;height: 50px;width: 50px;text-align: center;border:0;}
+		.OEMcontainer button:hover{cursor:pointer;}
+	    .OEMcontainer input[type="radio"]{display: none;}
+	    .OEMcontainer input[type="radio"]:checked + label{opacity: 1;}
+	    .OEMcontainer input[type="radio"] + label{opacity: .5;text-align: center;}
+	    .OEMcontainer input[type="radio"] + label:hover{cursor:pointer;}
+
+
+
+	    /*	table  */
+		.listContainer{width:100%;list-style: none;display: grid; height: 60vh;overflow-y: scroll;overflow-x: hidden;}
+		table{width:100%;list-style: none;margin:0;padding:0; border-collapse: collapse;}
+		table thead th{padding:10px;margin:0;text-align: center;color:#fff; position: sticky;top: 0;}
+		table thead th:nth-child(odd){background: var(--green);}
+		table thead th:nth-child(even){background: var(--blue);}
+		table thead th{border:1px solid var(--blue);font-size: .8rem;}
+
+
+		table tbody tr:first-child{display:none;}
+		table tbody td{border:1px solid var(--blue);text-align: center;color:var(--blue);}
+		table tbody td.OEM{padding:10px;font-weight: 800;}
+		table tbody td.MAKE{padding:10px;}
+		table tbody td.MODEL{padding:10px;}
+		table tbody td.YEAR{padding:10px;font-size:.8rem;}
+		table tbody td.DATE{padding:10px;font-size:.8rem;}
+		table tbody td.COMMENTS{padding:10px;font-size:.7rem;}
+		table tbody td.SEMAFORO{padding:0;}
+		table tbody td.SEMAFORO .rect{font-weight: 800;color:var(--blue);    height: 100%; width: 100%;display: grid;}
+		table tbody td.SEMAFORO:has(> .rect.RED){background: var(--red);}
+		table tbody td.SEMAFORO:has(> .rect.ORANGE){background: var(--orange);}
+		table tbody td.SEMAFORO:has(> .rect.YELLOW){background: var(--yellow);}
+		table tbody td.SEMAFORO:has(> .rect.GREEN){background: var(--green);}
+
+
+		/**/
+		#myBtn{    background: var(--green);border-radius: 50px;height: 50px;width: 50px;text-align: center;border: 0;    float: right;color: #fff;font-weight: 800;font-size: 30px;font-family: 'Poppins',sans-serif;}
+		#myBtn:hover{cursor:pointer;}
+		.modal {display: none; position: fixed; z-index: 1;left: 0;top: 0;width: 100%; height: 100%;  overflow: auto; background-color: rgb(0,0,0);background-color: rgba(0,0,0,0.8);}
+		.modal-content {background-color: #fefefe;margin: 15% auto;padding: 20px;border: 1px solid #888;width: 80%;}
+		.close {color: #aaa;float: right;font-size: 28px;font-weight: bold;}
+		.close:hover,.close:focus { color: black;text-decoration: none;cursor: pointer;}
+
+
+		/*footer*/
+    	footer{background: rgb(30,46,66);background: linear-gradient(90deg, rgba(30,46,66,1) 49%, rgba(74,100,112,1) 100%);}
+    	footer section{width: 80%;margin:0 auto;max-width: var(--maxSize);display: grid;align-content: space-around;grid-template-columns: 1fr 1fr;}
+    	footer section .left{text-align: left;display:grid;grid-template-columns: 30px 30px; grid-gap:25px; align-items: center;justify-content: start;}
+    	footer section .left a{text-decoration: none;}
+    	footer section .left a img{width:100%;max-width: 25px;}
+    	footer section .right{text-align: right;color:#fff;}
+
+
+
+    	@media(max-width:768px){
+    		.listContainer{overflow-x: scroll;}
+    		footer section{grid-template-columns: 1fr;}
+    		footer section .left{justify-content: center;}
+    		footer section .right{text-align: center;}
+    	}
+	</style>
+</head>
+<body>
+	<header>
+		<img src="./assets/ELE-Abril-Semaforo-UI.png"/>
+	</header>
+	<main>
+		<section id="middle">
+			<div id="cars">
+				<button id="myBtn">?</button>
+				<div class="OEMcontainer">
+					<div>
+						<button class="reset" id="reset">
+							<svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+								<g id="Layer_1-2">
+									<rect class="cls-2" fill="#80b944" x="0" y="0" width="50" height="50" rx="25" ry="25"/>
+									<path class="cls-1" fill="#f2f2f3" d="m25.21,37.68c-5.74,0-10.77-4.08-11.95-9.69l-.1-.49,3.64-.77.1.49c.83,3.9,4.32,6.74,8.31,6.74.59,0,1.18-.06,1.76-.18,4.58-.97,7.52-5.49,6.55-10.07-.83-3.9-4.32-6.74-8.31-6.74-.59,0-1.18.06-1.76.18-.93.2-1.81.55-2.62,1.04h2.79s-.02,3.54-.02,3.54l-9.43-.04.72-9.4,3.52.27-.23,2.92c1.35-.95,2.89-1.63,4.5-1.97.83-.18,1.68-.27,2.53-.27,5.74,0,10.76,4.08,11.95,9.69.67,3.19.06,6.45-1.72,9.19-1.78,2.74-4.52,4.62-7.71,5.29-.83.18-1.69.27-2.53.27Z"/>
+									<path class="cls-3" fill="#192f44" d="m15.35,12.82l2.52.19-.27,3.55c1.48-1.26,3.26-2.16,5.19-2.56.81-.17,1.63-.25,2.43-.25,5.42,0,10.3,3.79,11.46,9.3,1.34,6.32-2.72,12.55-9.04,13.89-.81.17-1.63.25-2.43.25-5.42,0-10.3-3.79-11.46-9.3l2.67-.56c.89,4.23,4.64,7.14,8.8,7.14.61,0,1.24-.06,1.86-.2,4.85-1.03,7.97-5.81,6.94-10.66-.89-4.23-4.64-7.13-8.8-7.13-.61,0-1.24.06-1.86.2-1.51.32-2.9,1.02-4.05,2.02h3.81s-.01,2.54-.01,2.54l-8.39-.03.64-8.37m-.92-1.07l-.08,1-.64,8.37-.08,1.07h1.08s8.39.04,8.39.04h1s0-.99,0-.99v-2.53s.02-1,.02-1h-.81c.08-.02.17-.04.25-.06.55-.12,1.1-.17,1.66-.17,3.75,0,7.04,2.67,7.82,6.34.91,4.31-1.86,8.56-6.17,9.48-.55.12-1.1.17-1.66.17-3.75,0-7.04-2.67-7.82-6.34l-.21-.98-.98.21-2.67.56-.98.21.21.98c1.24,5.85,6.47,10.09,12.44,10.09.88,0,1.77-.09,2.63-.28,3.32-.7,6.17-2.66,8.02-5.51,1.86-2.85,2.49-6.25,1.79-9.57-1.24-5.85-6.47-10.09-12.44-10.09-.88,0-1.77.09-2.63.28-1.34.28-2.63.79-3.82,1.49l.11-1.42.08-1-1-.08-2.52-.19-1-.08h0Z"/>
+								</g>
+							</svg>
+						</button>
+					</div>
+					<div>
+						<input type="radio"  name="oem" data-oem="BMW"  id="BMW" >
+						<label for="BMW">
+							<img src="./assets/BMW.png"/>
+						</label>
+					</div>
+					<div>
+						<input type="radio" name="oem" data-oem="Chirey" id="Chirey" >
+						<label for="Chirey">
+							<img src="./assets/CHIREY.png"/>
+						</label>
+					</div>
+					<div>
+						<input type="radio" name="oem" data-oem="FCA" id="FCA" >
+						<label for="FCA">
+							<img src="./assets/FCA.png"/>
+						</label>
+					</div>
+					<div>
+						<input type="radio" name="oem" data-oem="FORD" id="FORD" >
+						<label for="FORD">
+							<img src="./assets/Ford.png"/>
+						</label>
+					</div>
+					<div>
+						<input type="radio" name="oem" data-oem="GM" id="GM" >
+						<label for="GM">
+							<img src="./assets/GM.png"/>
+						</label>
+					</div>
+					<div>
+						<input type="radio" name="oem" data-oem="Honda" id="Honda">
+						<label for="Honda">
+							<img src="./assets/HONDA.png"/>
+						</label>
+					</div>
+					<div>
+						<input type="radio" name="oem" data-oem="Hyundai" id="Hyundai" >
+						<label for="Hyundai">
+							<img src="./assets/HUNDAI.png"/>
+						</label>
+					</div>
+					<div>
+						<input type="radio" name="oem" data-oem="JAC" id="JAC" >
+						<label for="JAC">
+							<img src="./assets/JAC.png"/>
+						</label>
+					</div>
+					<div>
+						<input type="radio" name="oem" data-oem="KIA" id="KIA" >
+						<label for="KIA">
+							<img src="./assets/KIA.png"/>
+						</label>
+					</div>
+					<div>
+						<input type="radio" name="oem" data-oem="Mazda" id="Mazda" >
+						<label for="Mazda">
+							<img src="./assets/MAZDA.png"/>
+						</label>
+					</div>
+					<div>
+						<input type="radio" name="oem" data-oem="MG" id="MG" >
+						<label for="MG">
+							<img src="./assets/MG.png"/>
+						</label>
+					</div>
+					<div>
+						<input type="radio" name="oem" data-oem="Mitsubishi" id="Mitsubishi" >
+						<label for="Mitsubishi">
+							<img src="./assets/MITSUBISHI.png"/>
+						</label>
+					</div>
+					<div>
+						<input type="radio" name="oem" data-oem="Nissan" id="Nissan" >
+						<label for="Nissan">
+							<img src="./assets/NISSAN.png"/>
+						</label>
+					</div>
+					<div>
+						<input type="radio" name="oem" data-oem="Renault" id="Renault" >
+						<label for="Renault">
+							<img src="./assets/RENAULT.png"/>
+						</label>
+					</div>
+					<div>
+						<input type="radio" name="oem" data-oem="Toyota" id="Toyota" >
+						<label for="Toyota">
+							<img src="./assets/TOYOTA.png"/>
+						</label>
+					</div>
+					<div>
+						<input type="radio" name="oem" data-oem="VW" id="VW" >
+						<label for="VW">
+							<img src="./assets/VOLKSWAGEN.png"/>
+						</label>
+					</div>
+					<div>
+						<input type="radio" name="oem" data-oem="VOLVO" id="VOLVO" >
+						<label for="VOLVO">
+							<img src="./assets/VOLVO.png"/>
+						</label>
+					</div>
+				</div>
+				<div class="listContainer">
+					<table>
+						<thead>
+							<tr>
+								<th>OEM</th>
+								<th>Marca</th>
+								<th>Modelo</th>
+								<th>Año</th>
+								<th>Fecha de Anuncio</th>
+								<th>Impacto</th>
+								<th>QTY</th>
+								<th>Semáforo</th>
+							</tr>
+						</thead>
+						<tbody class="list">
+							<tr>
+								<td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+		  <!-- Modal content -->
+		  <div class="modal-content">
+		    <span class="close">&times;</span>
+		    <p>Some text in the Modal..</p>
+		  </div>
+
+		</div>
+	</main>
+	<footer>
+		<section>
+			<div class="left">
+				<a href="https://mx.linkedin.com/company/element-fleet-management-mexico" target="_blank">
+					<img src="assets/social-icon-linkedin.png" alt="element-fleet-management-mexico"/>
+				</a>
+				<a href="https://www.youtube.com/elementfleet" target="_blank">
+					<img src="assets/social-icon-youtube.png" alt="element-fleet-management-mexico"/>
+				</a>
+			</div>
+			<div class="right">
+				<p>© <script> document.write(/\d{4}/.exec(Date())[0])  </script> Element Fleet Management México. All right reserved</p>
+			</div>
+		</section>
+	</footer>
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
+	<script>
+
+		//opciones
+		const options = {
+		  valueNames: [ 'OEM', 'MAKE',"MODEL","YEAR","DATE","COMMENTS","SEMAFORO","QTY","LUJO" ],
+		  item: `<tr>
+		  			<td class="OEM"></td>
+		  			<td class="MAKE"></td>
+		  			<td class="MODEL"></td>
+		  			<td class="YEAR"></td>
+		  			<td class="DATE"></td>
+		  			<td class="COMMENTS"></td>
+		  			<td class="QTY"></td>
+		  			<td class="SEMAFORO"></td>
+				</tr>`
+		};
+
+		//crear la lista
+		const carsList = new List('cars', options);
+
+		async function init(){
+			fetch('./data/csvjson.json').then(response => {
+			  return response.json();
+			}).then(data => {
+			  	// Work with JSON data here
+			  	// console.log(data);
+			  	// console.log(typeof data);
+			  	let cars = data.values();
+			  	// console.log(typeof cars);
+			  	for (let car of cars) {
+			  		// console.log(car);
+			  		let semaforoDiv = `<div class="rect ${car.SEMAFORO}">`;
+			  		switch(car.SEMAFORO){
+			  			case "RED":   	semaforoDiv += `<p></p`;	break;
+			  			case "ORANGE": 	semaforoDiv += (car.LUJO) ? `<p>< 3</p>` : `<p>< 15</p>`;	break;
+			  			case "YELLOW": 	semaforoDiv += (car.LUJO) ? `<p>< 6</p>` : `<p>< 30</p>`;  break;
+			  			case "GREEN": 	semaforoDiv += (car.LUJO) ? `<p>≥ 6</p>` : `<p>≥ 30</p>`;	break;
+			  		}
+			  		semaforoDiv += `</div>`;
+
+			  		let qtyText = (car.QTY == "") ? "-" : car.QTY;
+
+					carsList.add({
+					  OEM: car.OEM,
+					  MAKE: car.MAKE,
+					  MODEL: car.MODEL,
+					  YEAR: car.YEAR,
+					  DATE: car.DATE,
+					  COMMENTS: car.COMMENTS,
+					  QTY: qtyText,
+					  SEMAFORO: semaforoDiv,
+					});
+			  	}
+			  	
+
+			}).catch(err => {
+			  // Do something for an error here
+				console.error('Hubo un problema con la petición Fetch:' + err.message);
+			});
+			
+		}
+
+		const oemButtons  = document.querySelectorAll("input[type='radio'][name='oem']");
+		// console.log(oemButtons);
+		for(button of oemButtons){
+			button.addEventListener("click",function(event){
+				console.log(event.target);
+				console.log(event.target.id);
+				console.log(event.target.checked);
+				if(event.target.checked){
+					carsList.filter(function(item){
+						console.log(item);
+						return (item._values.OEM == event.target.id) ? true : false;
+					});
+				}else{
+					carsList.filter();
+				}
+			});
+		}
+
+		const reset = document.getElementById("reset");
+		reset.addEventListener("click",function(){
+			for(button of oemButtons){button.checked=false;}
+			carsList.filter();
+		});
+
+		const modal = document.getElementById("myModal");
+		const btn = document.getElementById("myBtn");
+		const span = document.getElementsByClassName("close")[0];
+		btn.onclick = function() { modal.style.display = "block";}
+		span.onclick = function() {modal.style.display = "none";}
+
+		window.onclick = function(event) { 
+			if (event.target == modal) { modal.style.display = "none";}
+		}
+
+		init();
+	</script>
+
+</body>
+</html>
